@@ -1,0 +1,120 @@
+<div class="container">
+<div class="position-relative">
+
+    <H1>REPORTE</H1>
+
+
+        <div *ngIf="verParametrosBuuqueda==true" class="container">
+      
+      
+                <div class="col-auto">
+                <label for="exampleDropdown">Buscar por:   </label>
+                <select class="form-select" id="seleccionParametro"  [(ngModel)]="seleccionParametro" aria-label="Default select example">          
+                    <option value="price">Precio</option>
+                    <option value="stems">Tallo</option>
+                </select>
+                </div>
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="cliente" value="cliente" [(ngModel)]="cliente" enable>
+                    <label class="form-check-label" for="flexCheckIndeterminateDisabled">
+                        Cliente
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="pais" value="pais" [(ngModel)]="pais"  enable>
+                    <label class="form-check-label" for="flexCheckIndeterminateDisabled">
+                        País
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="proveedor" value="proveedor" [(ngModel)]="proveedor"  enable>
+                    <label class="form-check-label" for="flexCheckIndeterminateDisabled">
+                        Proveedor
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="categoria" value="categoria" [(ngModel)]="categoria"  enable>
+                    <label class="form-check-label" for="flexCheckIndeterminateDisabled">
+                        Categoria
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="variedad" value="variedad" [(ngModel)]="variedad"  enable>
+                    <label class="form-check-label" for="flexCheckIndeterminateDisabled">
+                        Variedad
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="color" value="color" [(ngModel)]="color"  enable>
+                    <label class="form-check-label" for="flexCheckIndeterminateDisabled">
+                        Color
+                    </label>
+
+
+
+                    
+                </div>
+
+            <hr>
+
+                <div class="col-auto">
+                    <div  class="form-text">Escribe la fecha de inicio así: ejemplo(2000-01-23)</div>
+                    <input type="text" class="form-control" id="parametroBusqueA" name="parametroBusqueA"   [(ngModel)]="dateini" aria-describedby="emailHelp">       
+                </div>
+                <div class="col-auto">
+                    <div  class="form-text">Escribe la fecha de FIN así: ejemplo(2000-01-23)</div>
+                    <input type="text" class="form-control" id="NumeroTelefono" name="NumeroTelefono"  [(ngModel)]="datefin" aria-describedby="emailHelp">       
+                </div>
+        </div>
+    </div>
+
+
+    <div class="position-relative">
+        <br> 
+          <button type="button" class="btn btn-primary" (click)="consulta()" >BUSCAR</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelar()" >CANCELAR</button>
+          <br> 
+          <br>          
+      </div>
+
+
+
+        <div *ngIf="verParametrosBuuqueda==false" >
+            <form class="row g-3">                
+                <table class="table table-dark">
+                <thead >
+                    <tr >            
+                    <th scope="col">FECHA</th>
+                    <th *ngIf="cliente==true"   scope="col">CLIENTE</th>
+                    <th *ngIf="pais==true" scope="col">PAIS</th>
+                    <th *ngIf="proveedor==true" scope="col">PROVEDOR</th>
+                    <th  *ngIf="categoria==true" scope="col">CATEGORIA</th>
+                    <th *ngIf="variedad==true" scope="col">VARIEDAD</th>
+                    <th *ngIf="color==true" scope="col">COLOR</th>
+                    <th *ngIf="seleccionParametro=='stems'" scope="col">TALLOS</th>
+                    <th *ngIf="seleccionParametro=='price'" scope="col">PRECIO</th>
+                    </tr>              
+                </thead>
+                <tbody>
+                    <tr class="table-dark" *ngFor="let registro of registros">                 
+                        <td>{{registro.date}}</td> 
+                        <td *ngIf="cliente==true" >   {{registro.customer}}   </td> 
+                        <td *ngIf="pais==true" >      {{registro.country}}    </td> 
+                        <td *ngIf="proveedor==true" > {{registro.provider}}   </td> 
+                        <td *ngIf="categoria==true" > {{registro.category}}   </td> 
+                        <td *ngIf="variedad==true" >  {{registro.variety}}    </td> 
+                        <td *ngIf="color==true" >     {{registro.color}}      </td> 
+                        <td   *ngIf="seleccionParametro=='stems'" >{{registro.stems}}</td> 
+                        <td   *ngIf="seleccionParametro=='price'" >{{registro.price}}</td> 
+                    </tr> 
+                </tbody>
+                </table>
+            </form>
+        </div>
+
+</div>
+
+
